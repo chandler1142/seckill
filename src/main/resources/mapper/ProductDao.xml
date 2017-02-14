@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chandler.eshop.b2b.dao.ProductDao">
+
+    <update id="createProduct">
+        INSERT INTO Product (name, chain, categoryId)
+        VALUES (#{name},#{chain},#{categoryId});
+    </update>
+
+    <select id="queryById" resultType="Product" parameterType="long">
+        SELECT *
+        FROM Product
+        WHERE id=#{id};
+    </select>
+
+    <select id="queryAll" resultType="Product">
+        SELECT *
+        FROM Product
+        ORDER BY id;
+    </select>
+
+</mapper>

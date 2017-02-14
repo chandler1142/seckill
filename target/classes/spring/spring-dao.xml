@@ -32,27 +32,40 @@
         <property name="acquireRetryAttempts" value="2"/>
     </bean>
 
-    <!--约定大于配置-->
-    <!--３.配置SqlSessionFactory对象-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <!--往下才是mybatis和spring真正整合的配置-->
-        <!--注入数据库连接池-->
         <property name="dataSource" ref="dataSource"/>
-        <!--配置mybatis全局配置文件:mybatis-config.xml-->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <!--扫描entity包,使用别名,多个用;隔开-->
-        <property name="typeAliasesPackage" value="org.seckill.entity"/>
-        <!--扫描sql配置文件:mapper需要的xml文件-->
+        <property name="typeAliasesPackage" value="com.chandler.eshop.b2b.entity"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
-    <!--４:配置扫描Dao接口包,动态实现DAO接口,注入到spring容器-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!--注入SqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <!-- 给出需要扫描的Dao接口-->
-        <property name="basePackage" value="org.seckill.dao"/>
+        <property name="basePackage" value="com.chandler.eshop.b2b.dao"/>
     </bean>
+
+
+    <!--约定大于配置-->
+    <!--３.配置SqlSessionFactory对象-->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+        <!--&lt;!&ndash;往下才是mybatis和spring真正整合的配置&ndash;&gt;-->
+        <!--&lt;!&ndash;注入数据库连接池&ndash;&gt;-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--&lt;!&ndash;配置mybatis全局配置文件:mybatis-config.xml&ndash;&gt;-->
+        <!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+        <!--&lt;!&ndash;扫描entity包,使用别名,多个用;隔开&ndash;&gt;-->
+        <!--<property name="typeAliasesPackage" value="org.seckill.entity"/>-->
+        <!--&lt;!&ndash;扫描sql配置文件:mapper需要的xml文件&ndash;&gt;-->
+        <!--<property name="mapperLocations" value="classpath:mapper/*.xml"/>-->
+    <!--</bean>-->
+
+    <!--４:配置扫描Dao接口包,动态实现DAO接口,注入到spring容器-->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+        <!--&lt;!&ndash;注入SqlSessionFactory&ndash;&gt;-->
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+        <!--&lt;!&ndash; 给出需要扫描的Dao接口&ndash;&gt;-->
+        <!--<property name="basePackage" value="org.seckill.dao"/>-->
+    <!--</bean>-->
 
 
 
